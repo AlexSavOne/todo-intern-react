@@ -15,5 +15,27 @@ export const useTodos = () => {
     setTodos((prev) => [newTodo, ...prev]);
   };
 
-  return { todos, addTodo };
+  const toggleTodo = (id: string) => {
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  const clearCompleted = () => {
+    setTodos((prev) => prev.filter((todo) => !todo.completed));
+  };
+
+  const activeTodos = todos.filter((todo) => !todo.completed);
+  const completedTodos = todos.filter((todo) => todo.completed);
+
+  return {
+    todos,
+    addTodo,
+    toggleTodo,
+    clearCompleted,
+    activeTodos,
+    completedTodos,
+  };
 };
