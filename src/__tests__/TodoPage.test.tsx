@@ -36,7 +36,8 @@ test("Фильтрация активных задач", () => {
 
   const visibleTasks = screen
     .getAllByRole("listitem")
-    .map((el) => el.textContent);
+    .map((el) => el.textContent?.replace("🗑", "").trim());
+
   expect(visibleTasks).toContain("Задача 1");
   expect(visibleTasks).not.toContain("Задача 2");
 });
@@ -67,7 +68,28 @@ test("Фильтрация завершённых задач", () => {
 
   const visibleTasks = screen
     .getAllByRole("listitem")
-    .map((el) => el.textContent);
+    .map((el) => el.textContent?.replace("🗑", "").trim());
+
   expect(visibleTasks).toContain("Задача 1");
   expect(visibleTasks).toContain("Задача 2");
+});
+
+test("Удаление задачи", () => {
+  render(<TodoPage />);
+
+  const input = screen.getByPlaceholderText(/добавить задачу/i);
+  const button = screen.getByRole("button", { name: /добавить/i });
+
+  fireEvent.change(input, { target: { value: "Удаляемая задача" } });
+  fireEvent.click(button);
+
+  const deleteButton = screen.getByRole("button", {
+    name: /удалить удаляемая задача/i,
+  });
+  fireEvent.click(deleteButton);
+
+  const listItems = screen.queryAllByRole("listitem");
+  const texts = listItems.map((el) => el.textContent);
+
+  expect(texts).not.toContain("Удаляемая задача");
 });

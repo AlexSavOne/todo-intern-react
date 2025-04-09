@@ -5,9 +5,10 @@ import { Todo } from "../types/todo";
 interface Props {
   todo: Todo;
   onToggle: (id: string) => void;
+  onRemove: (id: string) => void;
 }
 
-const TodoItem: React.FC<Props> = ({ todo, onToggle }) => {
+const TodoItem: React.FC<Props> = ({ todo, onToggle, onRemove }) => {
   return (
     <li className="list-group-item d-flex align-items-center gap-2">
       <input
@@ -19,6 +20,13 @@ const TodoItem: React.FC<Props> = ({ todo, onToggle }) => {
       <span className={todo.completed ? "text-decoration-line-through" : ""}>
         {todo.text}
       </span>
+      <button
+        onClick={() => onRemove(todo.id)}
+        className="btn btn-sm btn-outline-danger ms-auto"
+        aria-label={`Удалить ${todo.text}`}
+      >
+        🗑
+      </button>
     </li>
   );
 };

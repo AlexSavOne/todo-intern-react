@@ -9,6 +9,7 @@ const TodoPage = () => {
     addTodo,
     toggleTodo,
     clearCompleted,
+    removeTodo,
     activeTodos,
     completedTodos,
   } = useTodos();
@@ -74,7 +75,12 @@ const TodoPage = () => {
 
       <ul className="list-group">
         {getVisibleTodos().map((todo) => (
-          <TodoItem key={todo.id} todo={todo} onToggle={toggleTodo} />
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onToggle={toggleTodo}
+            onRemove={removeTodo}
+          />
         ))}
       </ul>
 

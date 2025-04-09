@@ -27,6 +27,10 @@ export const useTodos = () => {
     setTodos((prev) => prev.filter((todo) => !todo.completed));
   };
 
+  const removeTodo = (id: string) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
   const activeTodos = todos.filter((todo) => !todo.completed);
   const completedTodos = todos.filter((todo) => todo.completed);
 
@@ -35,6 +39,7 @@ export const useTodos = () => {
     addTodo,
     toggleTodo,
     clearCompleted,
+    removeTodo,
     activeTodos,
     completedTodos,
   };
