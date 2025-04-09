@@ -1,6 +1,7 @@
 // src/pages/TodoPage.tsx
 import React, { useState } from "react";
 import { useTodos } from "../hooks/useTodos";
+import TodoItem from "../components/TodoItem";
 
 const TodoPage = () => {
   const {
@@ -73,23 +74,7 @@ const TodoPage = () => {
 
       <ul className="list-group">
         {getVisibleTodos().map((todo) => (
-          <li
-            key={todo.id}
-            className="list-group-item d-flex align-items-center gap-2"
-          >
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => toggleTodo(todo.id)}
-            />
-            <span
-              className={
-                todo.completed ? "text-decoration-line-through text-muted" : ""
-              }
-            >
-              {todo.text}
-            </span>
-          </li>
+          <TodoItem key={todo.id} todo={todo} onToggle={toggleTodo} />
         ))}
       </ul>
 
