@@ -8,4 +8,7 @@ export default defineConfig({
     open: true,
   },
   base: "/todo-intern-react/",
+  build: {
+    emptyOutDir: true,
+  },
 });
