@@ -13,7 +13,7 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
-    "types": ["jest", "@testing-library/jest-dom"],
+    "types": ["jest", "jsdom", "@testing-library/jest-dom"],
 
     /* Linting */
     "strict": true,
