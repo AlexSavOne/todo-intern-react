@@ -1,10 +1,16 @@
 // src/hooks/useTodos.ts
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Todo } from "../types/todo";
 import { v4 as uuidv4 } from "uuid";
+import { loadTodosFromStorage, saveTodosToStorage } from "../utils/storage";
 
 export const useTodos = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(loadTodosFromStorage());
+
+  useEffect(() => {
+    saveTodosToStorage(todos);
+  }, [todos]);
 
   const addTodo = (text: string) => {
     const newTodo: Todo = {

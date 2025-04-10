@@ -10,7 +10,11 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "jest",
+<<<<<<< HEAD
     "deploy": "gh-pages -d dist",
+=======
+    "deploy": "gh-pages --dotfiles -d dist",
+>>>>>>> main
     "predeploy": "npm run build"
   },
   "dependencies": {
