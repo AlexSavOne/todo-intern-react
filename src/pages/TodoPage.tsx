@@ -85,7 +85,7 @@ const TodoPage = () => {
       </ul>
 
       <div className="d-flex justify-content-between align-items-center mt-3">
-        <span className="text-muted">{activeTodos.length} задач осталось</span>
+        <span className="text-muted">Задач осталось: {activeTodos.length}</span>
         <button
           className="btn btn-sm btn-outline-danger"
           onClick={clearCompleted}
